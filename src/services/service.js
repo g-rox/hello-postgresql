@@ -2,20 +2,21 @@ const pool = require("../db");
 
 exports.getUsers = async () => {
   try {
-    return await pool.query("SELECT * FROM users");
+    const response = await pool.query("SELECT * FROM users");
+    return response.rows;
   } catch (error) {
     console.log("Error", error);
   }
 };
 
-exports.createUser = async (name) => {
+exports.createUser = async (name, email) => {
   const query = `
-  INSERT INTO users (name)
-  VALUES ($1)
+  INSERT INTO users (name, email)
+  VALUES ($1, $2)
   RETURNING *;
 `;
   try {
-    return await pool.query(query, [name]);
+    return await pool.query(query, [name, email]);
   } catch (error) {
     console.log("Error", error);
   }
