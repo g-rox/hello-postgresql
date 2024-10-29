@@ -1,3 +1,5 @@
+> **_NOTE:_** To be able to use this project, you need to have Postgres added as a side container
+
 # Hello PostgreSQL
 
 Node, PostgreSQL template
